@@ -6,11 +6,14 @@ import PackageDescription
 let package = Package(
     name: "VisionCCLibrary",
     defaultLocalization: "en",
+    platforms: [
+        .iOS(.v12)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "VisionCCLibrary",
-            targets: ["VisionCCiOSSDK"]),
+            targets: ["VisionCCLibrary"]),
     ],
     dependencies: [
         .package(url: "https://github.com/socketio/socket.io-client-swift.git", .upToNextMinor(from: "16.1.0")),
@@ -18,7 +21,7 @@ let package = Package(
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.7.1")),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", .upToNextMajor(from: "6.5.0")),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.6.0")),
-        .package(url: "https://github.com/realm/realm-swift.git", .upToNextMajor(from: "10.47.0")),
+//        .package(url: "https://github.com/realm/realm-swift.git", .upToNextMajor(from: "10.47.0")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,13 +30,14 @@ let package = Package(
         .target(
             name: "VisionCCLibrary",
             dependencies: [
-                .product(name: "socket.io-client-swift", package: "socket.io-client-swift"),
+                "VisionCCiOSSDK",
+                .product(name: "SocketIO", package: "socket.io-client-swift"),
                 .product(name: "JXSegmentedView", package: "JXSegmentedView"),
                 .product(name: "Alamofire", package: "Alamofire"),
                 .product(name: "SnapKit", package: "SnapKit"),
                 .product(name: "RxSwift", package: "RxSwift"),
-                .product(name: "RealmSwift", package: "RealmSwift")
-            ]
+            ],
+            path: "VisionCCLibrary"
         ),
         .binaryTarget(
             name: "VisionCCiOSSDK", 
