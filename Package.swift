@@ -12,8 +12,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "VisionCCLibrary",
-            targets: ["VisionCCLibrary"]),
+            name: "VisionCCLibraryTarget",
+            targets: ["VisionCCLibraryTarget"]),
     ],
     dependencies: [
         .package(url: "https://github.com/socketio/socket.io-client-swift.git", .upToNextMinor(from: "16.1.0")),
@@ -28,7 +28,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         //.binaryTarget(name: "VisionCCiOSSDK", path: "VisionCCiOSSDK.xcframework"),
         .target(
-            name: "VisionCCLibrary",
+            name: "VisionCCLibraryTarget",
             dependencies: [
                 "VisionCCiOSSDK",
                 .product(name: "SocketIO", package: "socket.io-client-swift"),
